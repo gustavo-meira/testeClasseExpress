@@ -19,7 +19,7 @@ class PostsController {
   public async create(req: Request, res: Response) {
     const { title, author, category, publicationDate } = req.body;
     const postsService = new PostsService();
-    const insertedId = postsService.create({ title, author, category, publicationDate });
+    const insertedId = await postsService.create({ title, author, category, publicationDate });
     res.status(201).json({
       id: insertedId,
       title,

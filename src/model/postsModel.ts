@@ -17,9 +17,8 @@ class PostsModel {
   public async create(post: PostsType): Promise<number> {
     const { title, author, category, publicationDate } = post;
     const [newPost] = await connection.query<ResultSetHeader>(`
-      INSERT INTO 'Posts'
-      VALUES
-        (?, ?, ?, ?)
+      INSERT INTO Posts (title, author, category, publicationDate)
+      VALUES (?, ?, ?, ?)
     `, [title, author, category, publicationDate]);
 
     return newPost.insertId;
